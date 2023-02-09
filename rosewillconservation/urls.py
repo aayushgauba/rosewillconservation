@@ -14,9 +14,16 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 """Authors - Anubhav Deoli, Aayush Gauba"""
+from django import urls
 from django.contrib import admin
-from django.urls import path
+from django.http import response
+from django.urls import *
+from django.shortcuts import render
+from django.template import RequestContext
+from django.conf.urls import *
+
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("", include("pages.urls")),
 ]
