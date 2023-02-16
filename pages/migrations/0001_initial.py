@@ -26,6 +26,7 @@ class Migration(migrations.Migration):
                 ("Email", models.EmailField(max_length=254)),
                 ("Message", models.TextField()),
                 ("Date", models.DateField()),
+                ("timeStamp", models.CharField(max_length=200)),
             ],
         ),
     ]

@@ -6,3 +6,4 @@ class Contact(models.Model):
     Email = models.EmailField()
     Message = models.TextField()
     Date = models.DateField()
+    timeStamp = models.CharField(max_length=200)
