@@ -1,17 +1,17 @@
 header {
 
-    background-color: red;
+    background-color: #d1c5e1;
     animation-name: example;
     animation-duration: 4s;
   }
   footer{
-    background-color: red;
+    background-color:#d1c5e1;
     animation-name: example;
     animation-duration: 4s;
   }
   @keyframes example {
     from {background-color: black;}
-    to {background-color: rgb(165,233,208);;}
+    to {background-color: #d1c5e1;}
   }
   h1::before {  
     transform: scaleX(0);
@@ -29,7 +29,7 @@ header {
     position: absolute;
    
     inset: 0 0 0 0;
-    background: hsl(200 100% 80%);
+    background: #afafaf;
     z-index: -1;
     transition: transform .3s ease;
   }
