@@ -20,21 +20,14 @@ def dashboard(request):
     
 def signin(request):
     if request.method == 'POST':
-        email = request.POST.get('email')
-        password = request.POST.get('password')
-        user = auth.authenticate(email=email, password=password)
-
+        emailuser = request.POST.get('email')
+        passworduser = request.POST.get('password')
+        user = auth.authenticate(email = emailuser,password = passworduser)
         if user is not None:
             auth.login(request, user)
             return redirect('dashboard')
         else:
-            user = auth.authenticate(username=email, password=password)
-            if user is not None:
-                auth.login(request, user)
-                return redirect('dashboard')
-            else:
-                messages.error(request, 'Invalid Credentials')
-                return redirect('signin')
+            return redirect('signin')
     else:    
         return render(request, 'admin/signin.html')
 
