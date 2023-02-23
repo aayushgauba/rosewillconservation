@@ -50,7 +50,7 @@
   <body data-new-gr-c-s-check-loaded="14.1022.0" data-gr-ext-installed="">
     
 <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Rosewill conservation</a>
+  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="{% url 'index' %}">Rosewill conservation</a>
   <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -95,23 +95,67 @@
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Dashboard</h1>
       </div>
-      <h2 class = "h3">Contact Form</h2>
+      <div class="container text-center">
+        <div class="row">
+          <div class="col">
+            
+          </div>
+          <div class="col">
+            <h2 class = "h3">Contact Form</h2>
+          </div>
+          <div class="col">
+            <!-- Button trigger modal -->
+<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Delete
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Are you sure?</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Note: changes cannot be undone
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <form action = "{% url 'contactDelete' contact.id %}" method = "post" id = "delete">
+          {% csrf_token %}
+          <input type = "submit" class = "btn btn-danger" value = "Delete">
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+          </div>
+        </div>
+      </div>
+
       <table class="table">
         <thead>
-          <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Email</th>
-            <th scope="col"></th>
-          </tr>
+
         </thead>
         <tbody>
-        {%for contact in contacts%}
           <tr>
+            <td>Name:</td>
             <td>{{contact.Name}}</td>
-            <td>{{contact.Email}}</td>
-            <td><a href="{% url 'contactView' contact.id %}" class="stretched-link">View</a></td>
           </tr>
-          {%endfor%}
+          <tr>
+            <td>Email:</td>
+            <td>{{contact.Email}}</td>
+          </tr>
+          <tr>
+            <td>Date Submitted:</td>
+            <td>{{contact.Date}}</td>
+          </tr>
+          <tr>
+            <td>Message:</td>
+            <td>{{contact.Message}}</td>
+          </tr>
         </tbody>
       </table>
 

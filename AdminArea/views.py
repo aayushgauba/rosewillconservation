@@ -4,7 +4,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth.admin import UserAdmin
 from django.shortcuts import render, redirect
 import re
-# Create your views here.
+from pages.models import Contact
+
 def isValidEmail(email):
     regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
     if(re.fullmatch(regex, email)):
@@ -14,15 +15,30 @@ def isValidEmail(email):
 
 def dashboard(request):
     if(request.user.is_authenticated):
-        return render(request, 'admin/dashboard.html')
+        contacts = Contact.objects.all()
+        return render(request, 'admin/dashboard.html', context={'contacts':contacts})
     else:
         return redirect('signin')
-    
+
+def contactView(request, contact_id):
+    if(request.user.is_authenticated):
+        contact = Contact.objects.get(id = contact_id)
+        return render(request, 'admin/contactView.html', context={'contact':contact})
+    else:
+        return redirect('signin')
+
+def contactDelete(request, contact_id):
+    if request.method == "POST":
+        contact = Contact.objects.get(id = contact_id)
+        contact.delete()
+        return redirect('dashboard')
+
 def signin(request):
     if request.method == 'POST':
         emailuser = request.POST.get('email')
         passworduser = request.POST.get('password')
-        user = auth.authenticate(email = emailuser,password = passworduser)
+        user = auth.authenticate(username = emailuser,password = passworduser)
+
         if user is not None:
             auth.login(request, user)
             return redirect('dashboard')
@@ -40,7 +56,6 @@ def signup(request):
         username = request.POST.get('username')
         password = request.POST.get('password')
         passwordcheck = request.POST.get('password2')
-
         if(password != passwordcheck):
             messages.error(request, 'Passswords dont match')
             return redirect(signup)
