@@ -7,3 +7,11 @@ class Contact(models.Model):
     Message = models.TextField()
     Date = models.DateField()
     timeStamp = models.CharField(max_length=200)
+
+class HomeSlider(models.Model):
+    Image= models.ImageField(upload_to='files', blank=False)
+    Description = models.CharField(max_length=100)
+
+    def delete(self, *args, **kwargs):
+        self.Image.delete()
+        super().delete(*args, **kwargs)
