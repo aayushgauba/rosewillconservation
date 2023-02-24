@@ -5,6 +5,7 @@ from django.contrib.auth.admin import UserAdmin
 from django.shortcuts import render, redirect
 import re
 from pages.models import Contact
+from pages.forms import ImageSliderForm
 
 def isValidEmail(email):
     regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
@@ -53,6 +54,19 @@ def signin(request):
             return redirect('signin')
     else:    
         return render(request, 'admin/signin.html')
+
+def upload(request):
+    if request.method == 'POST':
+        form = ImageSliderForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('dashboard')
+    else:
+        form = ImageSliderForm()
+    context = {
+            'form':form,
+        }
+    return render(request, 'admin/imageSliderAdd.html', context)
 
 def signup(request):
     user = User.objects.all()

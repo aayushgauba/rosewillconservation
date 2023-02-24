@@ -9,5 +9,6 @@ urlpatterns = [
     path('contact/delete/<int:contact_id>', views.contactDelete, name = 'contactDelete'),
     path('signin', views.signin, name = 'signin'),
     path('signup', views.signup, name = 'signup'),
-    path('signout', views.signout, name = 'signout')
+    path('signout', views.signout, name = 'signout'),
+    path('image/add',views.upload, name ="upload")
 ]
