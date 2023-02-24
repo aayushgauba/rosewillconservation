@@ -20,10 +20,17 @@ def dashboard(request):
     else:
         return redirect('signin')
 
-def contactView(request, contact_id):
+def contactView(request):
+    if(request.user.is_authenticated):
+        contacts = Contact.objects.all()
+        return render(request, 'admin/contactView.html', context={'contacts':contacts})
+    else:
+        return redirect('signin')
+
+def contactDetailView(request, contact_id):
     if(request.user.is_authenticated):
         contact = Contact.objects.get(id = contact_id)
-        return render(request, 'admin/contactView.html', context={'contact':contact})
+        return render(request, 'admin/contactDetailView.html', context={'contact':contact})
     else:
         return redirect('signin')
 
@@ -41,7 +48,7 @@ def signin(request):
 
         if user is not None:
             auth.login(request, user)
-            return redirect('dashboard')
+            return redirect('contactView')
         else:
             return redirect('signin')
     else:    
