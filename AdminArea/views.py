@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.admin import UserAdmin
 from django.shortcuts import render, redirect
 import re
-from pages.models import Contact
+from pages.models import Contact, HomeSlider
 from pages.forms import ImageSliderForm
 
 def isValidEmail(email):
@@ -16,8 +16,8 @@ def isValidEmail(email):
 
 def dashboard(request):
     if(request.user.is_authenticated):
-        contacts = Contact.objects.all()
-        return render(request, 'admin/dashboard.html', context={'contacts':contacts})
+        images = HomeSlider.objects.all()
+        return render(request, 'admin/dashboard.html', context={'images':images})
     else:
         return redirect('signin')
 

@@ -21,9 +21,10 @@ from django.urls import *
 from django.shortcuts import render
 from django.template import RequestContext
 from django.conf.urls import *
-
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path("admin/", include("AdminArea.urls")),
     path("", include("pages.urls")),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

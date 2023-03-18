@@ -9,7 +9,7 @@ class Contact(models.Model):
     timeStamp = models.CharField(max_length=200)
 
 class HomeSlider(models.Model):
-    Image= models.ImageField(upload_to='files', blank=False)
+    Image= models.FileField(upload_to='files', blank=False)
     Description = models.CharField(max_length=100)
 
     def delete(self, *args, **kwargs):
