@@ -1,12 +1,13 @@
 from django.shortcuts import redirect, render, redirect
 from .forms import ContactForm
-from .models import Contact
+from .models import Contact, HomeSlider
 from datetime import date
 import datetime
 
 def index(request):
+    images = HomeSlider.objects.all()
     yearstring = "© " + str(date.today().year) +" Rosewill Conservation, Inc"
-    return render(request, "index.html", context={'year':yearstring})
+    return render(request, "index.html", context={'year':yearstring, 'images':images})
 def about(request):
     yearstring = "© " + str(date.today().year) +" Rosewill Conservation, Inc"
     return render(request, "about.html", context={'year':yearstring})
