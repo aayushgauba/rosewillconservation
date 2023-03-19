@@ -9,21 +9,69 @@
 <script src="{% static 'js/min.js' %}" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 <link href="{% static 'css/min.css' %}" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-<link rel="icon" href="https://rosewillconservation.com/wp-content/uploads/2023/02/17.png">
+<link rel="icon" href="{% static 'logo.png'%}">
 <meta name="theme-color" content="#712cf9">
   </head>
+<style>
+
+#myBtn {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  background-color: red;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 4px;
+}
+svg{
+  fill:red !important;
+}
+#myBtn:hover {
+  background-color: #555;
+}
+</style>
+<script>
+  // Get the button
+  let mybutton = document.getElementById("myBtn");
+  
+  // When the user scrolls down 20px from the top of the document, show the button
+  window.onscroll = function() {scrollFunction()};
+  
+  function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+      mybutton.style.display = "block";
+    } else {
+      mybutton.style.display = "none";
+    }
+  }
+  
+  // When the user clicks on the button, scroll to the top of the document
+  function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  }
+  </script>
+
   <body> 
+    <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+
     {% block content %} {% endblock %}
-    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top" style="background-color:#172D13">
       <div class="col-md-4 d-flex align-items-center">
         <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
           <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
         </a>
-        <span class="mb-3 mb-md-0 text-muted">{{year}}</span>
+        <span class="mb-3 mb-md-0 text-muted" style="color:#D76F30 !important; font-family:Copperplate !important">{{year}}</span>
       </div>
   
       <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-        <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#twitter"></use></svg></a></li>
+        <li class="ms-3"><a class="text-muted" href="#"><svg style="fill: #d76f30 !important;" class="bi" width="24" height="24"><use xlink:href="#twitter"></use></svg></a></li>
         <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#instagram"></use></svg></a></li>
         <li class="ms-3"><a class="text-muted" href="https://www.facebook.com/people/Rosewill-Conservation-Inc/100072408360277/"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"></use></svg></a></li>
       </ul>
