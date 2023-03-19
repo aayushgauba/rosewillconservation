@@ -1,17 +1,22 @@
 {% extends 'base.html' %}
 {% block content %}   
-  <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom" >
-    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
-      <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
-      <span class="fs-4">Rosewill Conservation</span>
-    </a>
+<style>
+  .nav-link.active{
+    background-color: #D76F30 !important;
+  }
+</style>
+<header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom" style="background-color:#172D13">
+  <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+    <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+    <span class="fs-4" style="color:#D76F30; font-family:Lucida Handwriting"><b>Rosewill Conservation</b></span>
+  </a>
 
-    <ul class="nav nav-pills">
-      <li class="nav-item"><a href="{% url 'index' %}" class="nav-link " aria-current="page">Home</a></li>
-      <li class="nav-item "><a href="{% url 'about' %}" class="nav-link active">About</a></li>
-      <li class="nav-item"><a href="{% url 'contact' %}" class="nav-link">Contact</a></li>
-    </ul>
-  </header>
+  <ul class="nav nav-pills">
+    <li class="nav-item"><a href="/" class="nav-link" style="color:#D76F30; font-family:Copperplate" aria-current="page">Home</a></li>
+    <li class="nav-item"><a href="/about" class="nav-link active" style="background-color:#D76F30; font-family:Copperplate">About</a></li>
+    <li class="nav-item"><a href="/contact" class="nav-link" style="color:#D76F30; font-family:Copperplate">Contact</a></li>
+  </ul>
+</header>
 <div class="px-4 py-5 my-5 text-center">
   <h1 class="display-5 fw-bold">About</h1>
   <div class="col-lg-6 mx-auto">

@@ -10,5 +10,7 @@ urlpatterns = [
     path('signin', views.signin, name = 'signin'),
     path('signup', views.signup, name = 'signup'),
     path('signout', views.signout, name = 'signout'),
-    path('image/add',views.upload, name ="upload")
+    path('image/add',views.upload, name ="upload"),
+    path('image/delete/<int:request_id>',views.delete, name ="delete")
+
 ]

@@ -254,7 +254,7 @@
         <h2 class = "h3">Image</h2>
       </div>
       <div class="col">
-        Add
+        <a href = "{% url 'upload' %}" class = "btn btn-primary">Add Image</a>
         </div>
     </div>
 <table class="table">
@@ -271,7 +271,12 @@
         <tr>
             <td><img src="{{image.Image.url}}" width="50" height="60"></td>
             <td></td>
-            <td>Delete</td>
+            <td>
+              <form action = "{% url 'delete' image.id %}" method="post">
+                {%csrf_token%}
+                  <input type = "submit" class = "btn btn-danger" value = "Delete"/>
+              </form>
+</td>
         </tr>
         {%endfor%}
     </tbody>

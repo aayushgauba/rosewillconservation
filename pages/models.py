@@ -10,7 +10,7 @@ class Contact(models.Model):
 
 class HomeSlider(models.Model):
     Image= models.FileField(upload_to='files', blank=False)
-    Description = models.CharField(max_length=100)
+    Description = models.CharField(max_length=100, blank=True)
 
     def delete(self, *args, **kwargs):
         self.Image.delete()

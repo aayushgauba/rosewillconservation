@@ -68,6 +68,12 @@ def upload(request):
         }
     return render(request, 'admin/imageSliderAdd.html', context)
 
+def delete(request, request_id):
+    if request.method == 'POST':
+        image = HomeSlider.objects.get(id = request_id)
+        image.delete()
+        return redirect('dashboard')
+
 def signup(request):
     user = User.objects.all()
     if request.method == 'POST':

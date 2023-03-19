@@ -8,9 +8,11 @@ def index(request):
     images = HomeSlider.objects.all()
     yearstring = "© " + str(date.today().year) +" Rosewill Conservation, Inc"
     return render(request, "index.html", context={'year':yearstring, 'images':images})
+
 def about(request):
     yearstring = "© " + str(date.today().year) +" Rosewill Conservation, Inc"
     return render(request, "about.html", context={'year':yearstring})
+
 def contact(request):
     form = ContactForm()
     yearstring = "© " + str(date.today().year) +" Rosewill Conservation, Inc"
@@ -31,4 +33,3 @@ def contact(request):
 def contactpost(request, contact_id):
     yearstring = "© " + str(date.today().year) +" Rosewill Conservation, Inc"
     return render(request, "contactsuccess.html", context = {'year':yearstring})
-# Create your views here.
