@@ -20,8 +20,10 @@
     <p class="lead mb-4">Working Lands Conservation</p>
   </div>
 </div>
-<br>
 <style>
+  footer {
+    position: fixed;
+  }
   body {
     font-family: Arial;
     margin: 0;
@@ -146,7 +148,7 @@
       </div>
       {% endfor %}
     </div>
-  </div>  
+  </div> 
   <script>
   let slideIndex = 1;
   showSlides(slideIndex);
@@ -177,5 +179,11 @@
     captionText.innerHTML = dots[slideIndex-1].alt;
   }
   </script>
+  <div class="px-4 py-5 my-5 text-center">
+    <h1 class="display-5 fw-bold">Our Vision    </h1>
+    <div class="col-lg-6 mx-auto">
+      <p class="lead mb-4">We envision an economic system that protects our ecosystem. We measure success by how many people can live happy, healthy lives.      </p>
+    </div>
+  </div>
 {% endblock %}  
   
