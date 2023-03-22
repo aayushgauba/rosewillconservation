@@ -8,7 +8,7 @@ class Contact(models.Model):
     Date = models.DateField()
     timeStamp = models.CharField(max_length=200)
 
-class Donate(models.Model):
+class Campaign(models.Model):
     Title = models.CharField(max_length= 200)
     Description = models.TextField()
     MinimumAmount = models.IntegerField(blank=True)

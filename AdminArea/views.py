@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.admin import UserAdmin
 from django.shortcuts import render, redirect
 import re
-from pages.models import Contact, HomeSlider
+from pages.models import Contact, HomeSlider, Campaign
 from pages.forms import ImageSliderForm
 
 def isValidEmail(email):
@@ -40,6 +40,10 @@ def contactDelete(request, contact_id):
         contact = Contact.objects.get(id = contact_id)
         contact.delete()
         return redirect('contactView')
+
+def donationsView(request):
+    donations = Campaign.objects.all()
+    return render(request, 'admin/adminDonate.html')
 
 def signin(request):
     if request.method == 'POST':
