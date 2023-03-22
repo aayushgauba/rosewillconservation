@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render, redirect
 from .forms import ContactForm
-from .models import Contact, HomeSlider
+from .models import Contact, HomeSlider, Donate
 from datetime import date
 import datetime
 
@@ -33,3 +33,8 @@ def contact(request):
 def contactpost(request, contact_id):
     yearstring = "© " + str(date.today().year) +" Rosewill Conservation, Inc"
     return render(request, "contactsuccess.html", context = {'year':yearstring})
+
+def donate(request):
+    yearstring = "© " + str(date.today().year) +" Rosewill Conservation, Inc"
+    donations = Donate.objects.all()
+    return render(request, "donate.html", context = {'donations':donations, 'year':yearstring})

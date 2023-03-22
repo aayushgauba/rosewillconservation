@@ -39,7 +39,7 @@ def contactDelete(request, contact_id):
     if request.method == "POST":
         contact = Contact.objects.get(id = contact_id)
         contact.delete()
-        return redirect('dashboard')
+        return redirect('contactView')
 
 def signin(request):
     if request.method == 'POST':

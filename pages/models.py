@@ -8,6 +8,12 @@ class Contact(models.Model):
     Date = models.DateField()
     timeStamp = models.CharField(max_length=200)
 
+class Donate(models.Model):
+    Title = models.CharField(max_length= 200)
+    Description = models.TextField()
+    MinimumAmount = models.IntegerField(blank=True)
+    Image= models.FileField(upload_to='files', blank=True)
+
 class HomeSlider(models.Model):
     Image= models.FileField(upload_to='files', blank=False)
     Description = models.CharField(max_length=100, blank=True)
