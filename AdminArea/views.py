@@ -5,7 +5,7 @@ from django.contrib.auth.admin import UserAdmin
 from django.shortcuts import render, redirect
 import re
 from pages.models import Contact, HomeSlider, Campaign
-from pages.forms import ImageSliderForm
+from pages.forms import ImageSliderForm, CampaignForm
 
 def isValidEmail(email):
     regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
@@ -41,9 +41,9 @@ def contactDelete(request, contact_id):
         contact.delete()
         return redirect('contactView')
 
-def donationsView(request):
-    donations = Campaign.objects.all()
-    return render(request, 'admin/adminDonate.html')
+def campaignsView(request):
+    campaigns = Campaign.objects.all()
+    return render(request, 'admin/campaignView.html', context={"campaigns":campaigns})
 
 def signin(request):
     if request.method == 'POST':
@@ -71,6 +71,19 @@ def upload(request):
             'form':form,
         }
     return render(request, 'admin/imageSliderAdd.html', context)
+
+def campaignAdd(request):
+    if request.method == 'POST':
+        form = CampaignForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('dashboard')
+    else:
+        form = CampaignForm()
+    context = {
+            'form':form,
+        }
+    return render(request, 'admin/campaignAdd.html', context)
 
 def delete(request, request_id):
     if request.method == 'POST':
