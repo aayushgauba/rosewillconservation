@@ -138,7 +138,7 @@ def search(request):
         campaigns = Campaign.objects.filter(Title__contains = query)
         if(campaigns.count() == 0):
             campaigns.filter(Description__contains= query)
-        return render(request, "Admin/adminSearch.html", context={"contacts":contacts, "images":images, "campaigns":campaigns})
+        return render(request, "Admin/adminSearch.html", context={"contacts":contacts, "images":images, "campaigns":campaigns, "query":query})
 
 
 def signout(request):
