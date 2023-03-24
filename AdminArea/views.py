@@ -125,6 +125,22 @@ def signup(request):
 
     return render(request, 'admin/signup.html')
 
+def search(request):
+    if request.method == "POST":
+        query = request.POST.get("query")
+        contacts = Contact.objects.filter(Name__contains = query)
+        if(contacts.count() == 0):
+            contacts = Contact.objects.filter(Email__contains=query)
+        if(contacts.count() == 0):
+            contacts = Contact.objects.filter(Message__contains=query)
+        
+        images = HomeSlider.objects.filter(Description__contains = query)
+        campaigns = Campaign.objects.filter(Title__contains = query)
+        if(campaigns.count() == 0):
+            campaigns.filter(Description__contains= query)
+        return render(request, "Admin/adminSearch.html", context={"contacts":contacts, "images":images, "campaigns":campaigns})
+
+
 def signout(request):
     if request.method == 'POST':
         auth.logout(request)

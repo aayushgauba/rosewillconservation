@@ -14,7 +14,11 @@
       {% csrf_token %}
       <input type = "hidden">
     </form>
-
+    <form action = "{% url 'search' %}" method="post" id = "search">
+      {%csrf_token%}
+      <input type = "text" id = "query" name = "query" hidden = true>
+    </form>
+    
     <!-- Bootstrap core CSS -->
 <link href="https://getbootstrap.com/docs/5.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
@@ -43,7 +47,16 @@
         }
       }
     </style>
-
+<script>
+  function clickPress(event) {
+    if (event.key == "Enter") {
+        query = document.getElementById("searchBar").value
+        console.log(query)
+        document.getElementById("query").value = query
+        document.getElementById("search").submit()
+    }
+}
+</script>
     
     <!-- Custom styles for this template -->
     <link href="dashboard.css" rel="stylesheet">
@@ -55,7 +68,7 @@
   <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+  <input class="form-control form-control-dark w-100" type="text" id = "searchBar" onkeydown="clickPress(event)" placeholder="Search" aria-label="Search">
   <div class="navbar-nav">
     <div class="nav-item text-nowrap">
       <a class="nav-link px-3" href="javascript:{document.getElementById('signout').submit()}">Sign out
