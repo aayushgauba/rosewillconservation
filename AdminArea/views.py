@@ -83,6 +83,20 @@ def campaignAdd(request):
     context = {
             'form':form,
         }
+    return render(request, 'admin/campaignAdd.html', context)    
+
+def campaignUpdate(request, campaign_id):
+    campaign = Campaign.objects.get(id=campaign_id)
+    if request.method == 'POST':
+        form = CampaignForm(request.POST, request.FILES, instance=campaign)
+        if form.is_valid():
+            form.save()
+            return redirect('dashboard')
+    else:
+        form = CampaignForm(instance=campaign)
+    context = {
+            'form':form,
+        }
     return render(request, 'admin/campaignAdd.html', context)
 
 def delete(request, request_id):

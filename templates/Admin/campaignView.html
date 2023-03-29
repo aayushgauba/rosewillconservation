@@ -136,7 +136,7 @@
             <th scope="col">Description</th>
             <th scope="col">MinimumAmount</th>
             <th scope="col">Image</th>
-
+            <th scope="col"></th>
           </tr>
         </thead>
         <tbody>
@@ -150,6 +150,8 @@
             {%else%}
             <td></td>
             {%endif%}
+            <td><a href = "{% url 'campaignUpdate' campaign.id %}" class = "btn btn-primary">Update</a></td>
+
           </tr>
           {%endfor%}
         </tbody>
