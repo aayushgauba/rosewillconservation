@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.contrib import messages,auth,admin
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.contrib.auth.admin import UserAdmin
 from django.shortcuts import render, redirect
@@ -77,7 +78,7 @@ def campaignAdd(request):
         form = CampaignForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('dashboard')
+            return redirect('campaignsView')
     else:
         form = CampaignForm()
     context = {
@@ -91,13 +92,23 @@ def campaignUpdate(request, campaign_id):
         form = CampaignForm(request.POST, request.FILES, instance=campaign)
         if form.is_valid():
             form.save()
-            return redirect('dashboard')
+            return redirect('campaignsView')
     else:
         form = CampaignForm(instance=campaign)
     context = {
             'form':form,
         }
     return render(request, 'admin/campaignAdd.html', context)
+
+def campaignDelete(request, campaign_id):
+    if request.method == 'POST':
+        campaign = Campaign.objects.get(id = campaign_id)
+        campaign.delete()
+        return redirect('campaignsView')
+
+def campaignView(request, campaign_id):
+    campaign = Campaign.objects.get(id = campaign_id)
+    return render(request, 'admin/campaignDetailView.html', context={"campaign":campaign})
 
 def delete(request, request_id):
     if request.method == 'POST':
