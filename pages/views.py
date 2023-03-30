@@ -22,10 +22,11 @@ def contact(request):
             name = request.POST.get('Name')
             email = request.POST.get('Email')
             message = request.POST.get('Message')
+            phonenumber = request.POST.get('PhoneNumber')
             dateform = date.today()
             timeStamp = datetime.datetime.now()
-            Contact.objects.create(Name = name, Email = email, Message = message, Date = dateform, timeStamp = timeStamp)
-            contact = Contact.objects.get(Name = name, Email = email, Date = dateform, timeStamp = timeStamp)
+            Contact.objects.create(Name = name, Email = email, Message = message, PhoneNumber = phonenumber, Date = dateform, timeStamp = timeStamp)
+            contact = Contact.objects.get(Name = name, Email = email, Date = dateform, PhoneNumber = phonenumber, timeStamp = timeStamp)
             
             return redirect("contactpost", contact.id)
     return render(request, "contact.html", context = {'form':form, 'year':yearstring})

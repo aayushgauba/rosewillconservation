@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "AdminArea.apps.AdminareaConfig",
     'crispy_forms',
     'crispy_bootstrap5',
+    'phonenumbers',
 ]
 
 AUTHENTICATION_BACKENDS = (

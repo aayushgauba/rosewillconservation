@@ -1,4 +1,5 @@
 from django.db import models
+from phonenumber_field.modelfields import PhoneNumberField
 
 # Create your models here.
 class Contact(models.Model):
@@ -6,6 +7,7 @@ class Contact(models.Model):
     Email = models.EmailField()
     Message = models.TextField()
     Date = models.DateField()
+    PhoneNumber = PhoneNumberField(null=False, blank=True, unique=False)
     timeStamp = models.CharField(max_length=200)
 
 class Campaign(models.Model):

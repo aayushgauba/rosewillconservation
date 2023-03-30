@@ -1,10 +1,13 @@
 from django import forms
 from .models import Contact, HomeSlider, Campaign
+from phonenumber_field.formfields import PhoneNumberField
+from phonenumber_field.phonenumber import PhoneNumber
 
 class ContactForm(forms.Form):
     Name = forms.CharField()
     Email = forms.EmailField()
     Message = forms.CharField(widget=forms.Textarea)
+    PhoneNumber = PhoneNumberField()
 
 class ImageSliderForm(forms.ModelForm):
     class Meta:
