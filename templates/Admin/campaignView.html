@@ -137,6 +137,7 @@
             <th scope="col">MinimumAmount</th>
             <th scope="col">Image</th>
             <th scope="col"></th>
+            <th scope="col"></th>
           </tr>
         </thead>
         <tbody>
@@ -144,12 +145,17 @@
           <tr>
             <td>{{campaign.Title}}</td>
             <td>{{campaign.Email}}</td>
-            <td>{{campaign.MinimumAmount}}</td>
+            {%if campaign.MinimumAmount %}
+              <td>{{campaign.MinimumAmount}}</td>
+            {%else%}
+              <td></td>
+            {%endif%}
             {%if campaign.Image.name%}
             <td><img src="{{campaign.Image.url}}" width="50" height="60"></td>
             {%else%}
             <td></td>
             {%endif%}
+            <td><a href = "{% url 'campaignView' campaign.id %}" class = "btn btn-primary">View</a></td>
             <td><a href = "{% url 'campaignUpdate' campaign.id %}" class = "btn btn-primary">Update</a></td>
           </tr>
           {%endfor%}

@@ -13,7 +13,7 @@ class Contact(models.Model):
 class Campaign(models.Model):
     Title = models.CharField(max_length= 200)
     Description = models.TextField()
-    MinimumAmount = models.IntegerField(blank=True)
+    MinimumAmount = models.IntegerField(blank=True, null=True)
     Image= models.FileField(upload_to='files', blank=True)
 
 class HomeSlider(models.Model):

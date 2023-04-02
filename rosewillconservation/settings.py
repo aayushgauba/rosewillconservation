@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'crispy_bootstrap5',
     'phonenumbers',
+    'phonenumber_field',
 ]
 
 AUTHENTICATION_BACKENDS = (
@@ -143,3 +144,5 @@ STATICFILES_DIRS = [
 ]
 MEDIA_URL = '/files/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'files')
+
+PHONENUMBER_DB_FORMAT = 'INTERNATIONAL'
