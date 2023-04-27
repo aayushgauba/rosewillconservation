@@ -12,7 +12,7 @@
   <ul class="nav nav-pills">
     <li class="nav-item"><a href="{%url 'index'%}" class="nav-link" aria-current="page" style="color:#D76F30; font-family:Copperplate">Home</a></li>
     <li class="nav-item"><a href="{%url 'about'%}" class="nav-link" style="color:#D76F30; font-family:Copperplate">About</a></li>
-    <li class="nav-item"><a href="{%url 'contact'%}" class="nav-link active" style="background-color:#D76F30; font-family:Copperplate">Contact</a></li>
+    <li class="nav-item"><a href="{%url 'contact'%}" class="nav-link" style="color:#D76F30; font-family:Copperplate">Contact</a></li>
     <li class="nav-item"><a href="{%url 'donate'%}" class="nav-link" style="color:#D76F30; font-family:Copperplate">Donate</a></li>
   </ul>
 </header>
@@ -20,7 +20,7 @@
 <main class="form-signin w-100 m-auto">
   <div class="container">
 
-  <h1 class = "display-5 fw-bold"><center>Contact</center></h1>
+  <h1 class = "display-5 fw-bold"><center>Register</center></h1>
 
     <form method = "post">
         {%csrf_token%}
@@ -31,4 +31,3 @@
       </form>
     </main>
   {% endblock %}  
-  

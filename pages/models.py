@@ -23,3 +23,7 @@ class HomeSlider(models.Model):
     def delete(self, *args, **kwargs):
         self.Image.delete()
         super().delete(*args, **kwargs)
+
+class Order(models.Model):
+    Campaign_id = models.CharField(max_length= 100)
+    Amount = models.IntegerField()

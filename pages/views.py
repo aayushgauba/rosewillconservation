@@ -39,3 +39,8 @@ def donate(request):
     yearstring = "© " + str(date.today().year) +" Rosewill Conservation, Inc"
     donations = Campaign.objects.all()
     return render(request, "donate.html", context = {'donations':donations, 'year':yearstring})
+
+def donateView(request, donation_id):
+    yearstring = "© " + str(date.today().year) +" Rosewill Conservation, Inc"
+    donation = Campaign.objects.get(id = donation_id)
+    return render(request, "donateDetailView.html", context = {'donation':donation, 'year':yearstring})

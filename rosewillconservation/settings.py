@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'crispy_bootstrap5',
     'phonenumbers',
     'phonenumber_field',
+    'paypal.standard.ipn',
 ]
 
 AUTHENTICATION_BACKENDS = (
@@ -146,3 +147,10 @@ MEDIA_URL = '/files/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'files')
 
 PHONENUMBER_DB_FORMAT = 'INTERNATIONAL'
+
+EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+EMAIL_FILE_PATH = BASE_DIR / "sent_emails"
+
+PAYPAL_RECEIVER_EMAIL = 'gauba.aayush@gmail.com'
+
+PAYPAL_TEST = True

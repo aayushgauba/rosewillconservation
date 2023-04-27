@@ -2,6 +2,20 @@
 {%load static%}
 {% block content %}   
 <style>
+  .input_date {
+    margin:1px 0px 50px 0px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    line-height: 1.5;
+    color: #111;
+    display: block;
+    background: #ddd;
+    height: 50px;
+    border-radius: 5px;
+    border: 2px solid #111111;
+    padding: 0 20px 0 20px;
+    width: 100px;
+}
   .nav-link.active{
     background-color: #D76F30 !important;
   }
@@ -27,6 +41,44 @@
   content: '' !important;
 }
 </style>
+<script>
+  var currencyInput = document.querySelectorAll( 'input[type="currency"]' );
+
+  for ( var i = 0; i < currencyInput.length; i++ ) {
+
+      var currency = 'GBP'
+      onBlur( {
+          target: currencyInput[ i ]
+      } )
+
+      currencyInput[ i ].addEventListener( 'focus', onFocus )
+      currencyInput[ i ].addEventListener( 'blur', onBlur )
+
+      function localStringToNumber( s ) {
+          return Number( String( s ).replace( /[^0-9.-]+/g, "" ) )
+      }
+
+      function onFocus( e ) {
+          var value = e.target.value;
+          e.target.value = value ? localStringToNumber( value ) : ''
+      }
+
+      function onBlur( e ) {
+          var value = e.target.value
+
+          var options = {
+              maximumFractionDigits: 2,
+              currency: currency,
+              style: "currency",
+              currencyDisplay: "symbol"
+          }
+
+          e.target.value = ( value || value === 0 ) ?
+              localStringToNumber( value ).toLocaleString( undefined, options ) :
+              ''
+      }
+  }
+</script>
 <title>Donate | Rosewill Conservation</title>
 <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom" style="background-color:#172D13">
   <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
@@ -41,34 +93,18 @@
     <li class="nav-item"><a href="{%url 'donate'%}" class="nav-link active" style="background-color:#D76F30; font-family:Copperplate">Donate</a></li>
   </ul>
 </header>
-  <h1 class="display-5 fw-bold"><center>Donate</center></h1>
-  {% if donations %}
-  <div class="album py-5 bg-light" style = "background-color:9de0ad !important;">
-    <div class="container" style = "background-color:9de0ad;">
+<h1><center>Donate</center></h1>
+<br>
+<div class="progress">
+  <div class="progress-bar" style="width:33%; background-color:#D76F30;"></div>
+</div>
+<br>
+  <h2><center>{{donation.Title}}</center></h2>
+<h5><center>How much do you wish to donate?</center></h5>
+<form>
+  <center>
+    <input class="input_date" type="currency" name="us_dollars" id="us_dollars" value={{donation.MinimumAmount}}.00></p></center>
 
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" style>
-        {%for donation in donations%}
-        <div class="col" style = "background-color:#9de0ad;">
-          <div class="card shadow-sm" style = "background-color:#172D13;">
-            {%if donation.Image%}
-            <img class="bd-placeholder-img card-img-top" src={{donation.Image.url}} width="100%" height="225" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-            {%endif%}
-            <div class="card-body">
-              <h4 style="color:#D76F30;"><b>{{donation.Title}}</b></h4>
-              {%if donation.MinimumAmount%}
-                <p style="color:#D76F30;"><b>Minimum Amount: </b>${{donation.MinimumAmount}}</p>
-              {%endif%}
-              <p class="card-text" style = "color:D76F30;">{{donation.Description}}</p>
-              <div class="multi-progress"><div class="color-1" style="width: 1%;"></div><div class=""></div><span class="raised-badge"><span class="raised">0.00</span>/<span class="goal">0.00</span></span></div>
-              <div class="d-flex justify-content-between align-items-center">
-                  <a href="{% url 'donateView' donation.id %}"  style="background-color:#D76F30; border: #d76f30 !important;" class="btn btn-primary">Donate</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        {%endfor%}
-      </div>
-    </div>
-  </div>
-  {%endif%}
+</form>
+
   {% endblock %}  
