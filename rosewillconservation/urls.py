@@ -13,7 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-"""Authors - Anubhav Deoli, Aayush Gauba"""
+"""Authors - Anubhav Deoli, Aayush Gauba, Hemali Patel"""
 from django import urls
 from django.contrib import admin
 from django.http import response
