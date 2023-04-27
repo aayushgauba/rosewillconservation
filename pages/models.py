@@ -26,4 +26,7 @@ class HomeSlider(models.Model):
 
 class Order(models.Model):
     Campaign_id = models.CharField(max_length= 100)
+    Name = models.CharField(max_length=200)
+    Email = models.EmailField()
     Amount = models.IntegerField()
+    paid = models.BooleanField(default="False")
