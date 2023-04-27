@@ -97,17 +97,14 @@
 <h1><center>Donate</center></h1>
 <br>
 <div class="progress">
-  <div class="progress-bar" style="width:33%; background-color:#D76F30;"></div>
+  <div class="progress-bar" style="width:66%; background-color:#D76F30;"></div>
 </div>
 <br>
   <h2><center>{{donation.Title}}</center></h2>
-<h5><center>How much do you wish to donate?</center></h5>
+<h5><center>Donate using Paypal</center></h5>
 <div class="container">
 
-<form method="post" action="{%url 'donateView' donation.id %}">
- {%csrf_token%}
- {{form | crispy}}
- <center><input type="submit" value="Submit" class="btn btn-primary" style="background-color:#D76F30; border: #d76f30 !important;"></center>
-</form>
+
+ {{form.render}}
 </div>
   {% endblock %}  

@@ -57,36 +57,39 @@ def donateView(request, donation_id):
             amount = request.POST.get("Amount")
             paid = False
             Order.objects.create(Campaign_id = donation_id, Name = name, Email =email, Amount = amount, paid= paid)
-    return render(request, "donateDetailView.html", context = {'donation':donation, 'year':yearstring})
+            order_id = Order.objects.get(Campaign_id = donation_id, Name = name, Email =email, Amount = amount, paid= paid).id
+            return redirect("processPayment", donation_id, order_id)
+    return render(request, "donateDetailView.html", context = {'donation':donation, 'year':yearstring, 'form':orderform})
 
+@csrf_exempt
 def paymentDoneRedirect(order_id):
     order = Order.objects.get(id = order_id)
     order.paid = True
     order.save()
     return redirect("paymentDone")
 
+@csrf_exempt
 def paymentDone(request):
-    return render(request, "paymentsucess.html")
+    return render(request, "donateConfirm.html")
 
-def processPayment(request, order_id):
+def processPayment(request, donation_id, order_id):
     order = Order.objects.get(id=order_id)
     host = request.get_host()
 
     paypal_dict = {
         'business': settings.PAYPAL_RECEIVER_EMAIL,
-        'amount': '%.2f' % order.Amount.quantize(
-            Decimal('.01')),
+        'amount': '%.2f' % order.Amount,
         'item_name': 'Order {}'.format(order.id),
         'invoice': str(order.id),
         'currency_code': 'USD',
         'notify_url': 'http://{}{}'.format(host,
                                            reverse('paypal-ipn')),
         'return_url': 'http://{}{}'.format(host,
-                                           reverse('payment_done')),
+                                           reverse('paymentDoneRedirect', kwargs={"order_id":order_id})),
         'cancel_return': 'http://{}{}'.format(host,
-                                              reverse('payment_cancelled')),
+                                              reverse('donate')),
     }
 
     form = PayPalPaymentsForm(initial=paypal_dict)
-    return render(request, 'ecommerce_app/process_payment.html', {'order': order, 'form': form})
+    return render(request, 'donatePaypal.html', {'order': order, 'form': form})
 
