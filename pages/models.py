@@ -30,3 +30,4 @@ class Order(models.Model):
     Email = models.EmailField()
     Amount = models.IntegerField()
     paid = models.BooleanField(default="False")
+    timestamp = models.CharField(max_length=100)

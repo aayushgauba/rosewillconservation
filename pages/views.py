@@ -56,8 +56,9 @@ def donateView(request, donation_id):
             email = request.POST.get("Email")
             amount = request.POST.get("Amount")
             paid = False
-            Order.objects.create(Campaign_id = donation_id, Name = name, Email =email, Amount = amount, paid= paid)
-            order_id = Order.objects.get(Campaign_id = donation_id, Name = name, Email =email, Amount = amount, paid= paid).id
+            timeStamp = datetime.datetime.now()
+            Order.objects.create(Campaign_id = donation_id, Name = name, Email =email, Amount = amount, paid= paid, timestamp = timeStamp)
+            order_id = Order.objects.get(Campaign_id = donation_id, Name = name, Email =email, Amount = amount, paid= paid, timestamp = timeStamp).id
             return redirect("processPayment", donation_id, order_id)
     return render(request, "donateDetailView.html", context = {'donation':donation, 'year':yearstring, 'form':orderform})
 
@@ -72,6 +73,7 @@ def paymentDoneRedirect(order_id):
 def paymentDone(request):
     return render(request, "donateConfirm.html")
 
+@csrf_exempt
 def processPayment(request, donation_id, order_id):
     order = Order.objects.get(id=order_id)
     host = request.get_host()

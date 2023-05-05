@@ -25,7 +25,7 @@ SECRET_KEY = "django-insecure-ai$^cwr)50!s8*hq79w@fhw&8=0t^(n!#yckr+1b=$dsx663mv
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['27ea-2401-4900-1c5c-16c9-48c4-7eb4-1d22-b0a7.ngrok-free.app']
 
 
 # Application definition
@@ -52,6 +52,7 @@ AUTHENTICATION_BACKENDS = (
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
+CSRF_TRUSTED_ORIGINS = ['https://27ea-2401-4900-1c5c-16c9-48c4-7eb4-1d22-b0a7.ngrok-free.app/']
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",

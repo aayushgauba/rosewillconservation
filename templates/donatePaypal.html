@@ -103,7 +103,7 @@
   <h2><center>{{donation.Title}}</center></h2>
 <h5><center>Donate using Paypal</center></h5>
 <div class="container">
-
+{%csrf_token%}
 
  {{form.render}}
 </div>
