@@ -25,7 +25,7 @@ SECRET_KEY = "django-insecure-ai$^cwr)50!s8*hq79w@fhw&8=0t^(n!#yckr+1b=$dsx663mv
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['https://agauba.pythonanywhere.com/']
+ALLOWED_HOSTS = ['https://agauba.pythonanywhere.com/','agauba.pythonanywhere.com']
 
 
 # Application definition
