@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-ai$^cwr)50!s8*hq79w@fhw&8=0t^(n!#yckr+1b=$dsx663mv"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['agauba.pythonanywhere.com']
 
