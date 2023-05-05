@@ -90,11 +90,11 @@ WSGI_APPLICATION = "rosewillconservation.wsgi.application"
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'rosewillconservation',
-        'USER':'postgres',
-        'PASSWORD':'aayush',
-        'HOST':'localhost'
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'agauba$rosewillconservation',
+        'USER':'agauba',
+        'PASSWORD':'rosewill',
+        'HOST':'agauba.mysql.pythonanywhere-services.com'
     }
 }
 
