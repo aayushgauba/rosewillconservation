@@ -24,21 +24,21 @@ def isValidEmail(email):
 def dashboard(request):
     if(request.user.is_authenticated):
         images = HomeSlider.objects.all()
-        return render(request, 'admin/dashboard.html', context={'images':images})
+        return render(request, 'Admin/dashboard.html', context={'images':images})
     else:
         return redirect('signin')
 
 def contactView(request):
     if(request.user.is_authenticated):
         contacts = Contact.objects.all()
-        return render(request, 'admin/contactView.html', context={'contacts':contacts})
+        return render(request, 'Admin/contactView.html', context={'contacts':contacts})
     else:
         return redirect('signin')
 
 def contactDetailView(request, contact_id):
     if(request.user.is_authenticated):
         contact = Contact.objects.get(id = contact_id)
-        return render(request, 'admin/contactDetailView.html', context={'contact':contact})
+        return render(request, 'Admin/contactDetailView.html', context={'contact':contact})
     else:
         return redirect('signin')
 
@@ -50,7 +50,7 @@ def contactDelete(request, contact_id):
 
 def campaignsView(request):
     campaigns = Campaign.objects.all()
-    return render(request, 'admin/campaignView.html', context={"campaigns":campaigns})
+    return render(request, 'Admin/campaignView.html', context={"campaigns":campaigns})
 
 def signin(request):
     if request.method == 'POST':
@@ -64,7 +64,7 @@ def signin(request):
         else:
             return redirect('signin')
     else:    
-        return render(request, 'admin/signin.html')
+        return render(request, 'Admin/signin.html')
 
 def upload(request):
     if request.method == 'POST':
@@ -77,7 +77,7 @@ def upload(request):
     context = {
             'form':form,
         }
-    return render(request, 'admin/imageSliderAdd.html', context)
+    return render(request, 'Admin/imageSliderAdd.html', context)
 
 def campaignAdd(request):
     if request.method == 'POST':
@@ -90,7 +90,7 @@ def campaignAdd(request):
     context = {
             'form':form,
         }
-    return render(request, 'admin/campaignAdd.html', context)    
+    return render(request, 'Admin/campaignAdd.html', context)    
 
 def campaignUpdate(request, campaign_id):
     campaign = Campaign.objects.get(id=campaign_id)
@@ -104,7 +104,7 @@ def campaignUpdate(request, campaign_id):
     context = {
             'form':form,
         }
-    return render(request, 'admin/campaignAdd.html', context)
+    return render(request, 'Admin/campaignAdd.html', context)
 
 def campaignDelete(request, campaign_id):
     if request.method == 'POST':
@@ -114,7 +114,7 @@ def campaignDelete(request, campaign_id):
 
 def campaignView(request, campaign_id):
     campaign = Campaign.objects.get(id = campaign_id)
-    return render(request, 'admin/campaignDetailView.html', context={"campaign":campaign})
+    return render(request, 'Admin/campaignDetailView.html', context={"campaign":campaign})
 
 def delete(request, request_id):
     if request.method == 'POST':
@@ -130,7 +130,7 @@ def signup(request):
         else:
             return redirect('signup')
 
-    return render(request, 'admin/register.html', context = {"form":form})
+    return render(request, 'Admin/register.html', context = {"form":form})
 
 def search(request):
     if request.method == "POST":
