@@ -91,9 +91,6 @@ WSGI_APPLICATION = "rosewillconservation.wsgi.application"
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'OPTIONS': {
-            'sql_mode': 'strict',
-            },
         'NAME': 'agauba$rosewillconservation',
         'USER':'agauba',
         'PASSWORD':'rosewill',
