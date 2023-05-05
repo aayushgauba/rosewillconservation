@@ -25,7 +25,7 @@ SECRET_KEY = "django-insecure-ai$^cwr)50!s8*hq79w@fhw&8=0t^(n!#yckr+1b=$dsx663mv
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['agauba.pythonanywhere.com']
+ALLOWED_HOSTS = ['https://agauba.pythonanywhere.com/']
 
 
 # Application definition
@@ -52,7 +52,7 @@ AUTHENTICATION_BACKENDS = (
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
-CSRF_TRUSTED_ORIGINS = ['agauba.pythonanywhere.com']
+CSRF_TRUSTED_ORIGINS = ['https://agauba.pythonanywhere.com/']
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
